@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+</head>
+<body>
+
+    <h1>Moje posty</h1>
+
+    <div th:each="post : ${posts}">       //wyświetla elementy listy
+    <h3 th:text="${post.title}"></h3>     //wyśweitlamy tytuły
+    <h3 th:text="${post.content}"></h3>   //wyświetlamy content
+
+
+    </div>
+
+
+
+
+
+
+</body>
+</html>
