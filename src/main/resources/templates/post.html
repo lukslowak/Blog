@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini blog</title>
+</head>
+<body>
+<div class="header">
+    <!--<div th:replace="~{includes/searchbar :: searchForm}"></div>-->
+
+</div>
+<div th:if="${post != null}">
+    <h1 th:text="${post.title}"></h1>
+    <div th:text="${post.content}"></div>
+    <!-- czas, treść -->
+    <div th:each="comment : ${post.comments}">
+        <!--
+               <div th:text="${#dates.format(comment.audit.added, 'yyyyMMdd hh:mm:ss')}"></div>
+        -->
+        <div th:text="${comment.comment}"></div>
+    </div>
+
+    <h3>Dodaj nowy komentarz:</h3>
+    <form th:action="@{/post/addComment}" method="post">
+        <input type="hidden" name="postId" th:value="${post.id}">
+        <!--<input type="text" th:name="title" placeholder="Tytuł...">-->
+        <!--<br>-->
+        Treść komentarza:<br>
+        <textarea th:type="text" th:name="commentBody"></textarea>
+        <br>
+        <input th:type="submit" value="Dodaj komentarz">
+    </form>
+
+</div>
+<p th:if="${post == null}">
+    Przepraszamy, ale nie znalezlismy postu, ktorego szukasz. :disappointed:
+</p>
+
+
+
+</body>
+</html>

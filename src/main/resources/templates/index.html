@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini blog</title>
+</head>
+<body>
+
+<h1>Witaj na moim blogu!</h1>
+<p th:if="${principal != null}" th:text="${'Principal: ' + principal}"></p>
+<p th:if="${loggedUser != null}" th:text="${'Zalogowany: ' + loggedUser.email}"></p>
+<p th:text="${name}">Lukasz</p>
+
+</body>
+</html>

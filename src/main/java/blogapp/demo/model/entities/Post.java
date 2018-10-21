@@ -1,5 +1,6 @@
 package blogapp.demo.model.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,10 +25,25 @@ public class Post {
     @Embedded // trzeba dać, że hibernate wiedział to to trzeba powiążacać
     private AuditEntity audit = new AuditEntity();
 
-    @OneToMany(mappedBy = "post") // nazywamy relację w bazie danych - jeden post ma wiele commentów
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL) // nazywamy relację w bazie danych - jeden post ma wiele commentów
     private Set<PostComment> comments = new HashSet<>();
 
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    @Getter
+    @Setter
+    private User user;
 
 
 
+
+    public void addComment(PostComment postComment) {
+        comments.add(postComment);
+        postComment.setPost(this);
+    }
 }

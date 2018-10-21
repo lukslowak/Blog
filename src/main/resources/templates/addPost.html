@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>addPost</title>
+</head>
+<body>
+
+<form th:action="@{/addPost}" method="post">
+    <label>Podaj tytul:</label>
+    <input type = "text" th:name="title" placeholder="Tytul" required>
+    <br>
+    <label>Podaj tekst: </label>
+    <textarea type ="text" th:name = "content" placeholder="Tresc" required></textarea>
+    <br>
+    <input type="submit" value="Dodaj">
+
+</form>
+
+</body>
+</html>
